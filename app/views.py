@@ -71,4 +71,4 @@ class ProjectDeleteView(LoginRequiredMixin,DeleteView):
 class SignUpView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
-    success_url = '/home'
+    success_url = '/'
