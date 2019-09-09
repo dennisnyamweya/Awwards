@@ -49,6 +49,9 @@
       <a href="{% url 'create' %}" class="mr-4 text-white">
       <i class="fas fa-plus"></i> &nbsp; Add Project
       </a>
+      <a href="{% url 'create_profile' %}" class="mr-4 text-white">
+      <i class="fas fa-user-plus"></i> &nbsp; Create Profile
+      </a>
       
       {% else %}
       <a href="{% url 'signup' %}" class="mr-4 text-white">
@@ -58,6 +61,8 @@
       <i class="fas fa-sign-in-alt"></i> &nbsp; Log in
       </a>
       {% endif %}
+
+
 
       </p>
       <form class="form-inline my-2" action="{% url 'search' %}" method="GET">
