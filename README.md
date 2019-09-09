@@ -16,6 +16,12 @@ There are no issues that have not yet been resolved and incase of a bug  let use
 * Django
 * HTML & CSS(Bootstrap)
 * Javascript
+## Behaviour Driven Development(BDD)
+
+| Behaviour | Input | Output |
+| :---------------- | :---------------: | ------------------: |
+| to add post | click on sign up |  fill in the registration field |
+| to intract with app | click on login | fill in the field  and submit |
 ## Support and contact details
 {Let people know what to do if they run into any issues or have questions, ideas or concerns.  Encourage them to contact you or make a contribution to the code.}
 ### License
