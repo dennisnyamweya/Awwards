@@ -1,8 +1,8 @@
-# {Application Name}
-#### {Brief description of application}, {Date of current version}
-#### By **{List of contributors}**
+# Awwards
+#### An application will allow a user to post a project he/she has created and get it reviewed by his/her peers., 9th September 2019
+#### By **Dennis  Nyamweya**
 ## Description
-{This is a detailed description of your application, including its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }
+An application will allow a user to post a project he/she has created and get it reviewed by his/her peers.
 ## Setup/Installation Requirements
 * This is a great place
 * to list setup instructions
