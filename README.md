@@ -4,12 +4,10 @@
 ## Description
 An application will allow a user to post a project he/she has created and get it reviewed by his/her peers.
 ## Setup/Installation Requirements
-* This is a great place
-* to list setup instructions
-* in a simple
-* easy-to-understand
-* format
-{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? Do I need to install any dependencies? How should I set up my databases? Is there other code this app depends on?}
+* git clone https://github.com/dennisnyamweya/Instagram.git
+* cd INSTAGRAM
+* Install dependencies pip install -r requirements.txt
+* Run the application python manage.py runserverany dependencies? How should I set up my databases? Is there other code this app depends on?}
 ## Known Bugs
 There are no issues that have not yet been resolved and incase of a bug  let users know you know? Outline any issues that would impact use of your application. Share any workarounds that are in place. 
 ## Technologies Used
