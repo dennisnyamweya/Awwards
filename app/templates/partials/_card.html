@@ -1,4 +1,5 @@
     {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
           <div class="card my-2 mx-2 project-card">
         <img src="{% if project.image %}
         {{project.image.url}}
@@ -12,5 +13,7 @@
         </div>
         <div class="card-body pb-0">
           <p><i class="fas fa-info-circle mr-2"></i> {{project.info}}</p>
+          <p><i class="fa fa-external-link-square  mr-2"></i> {{project.url}}</p>
         </div>
       </div>
+      

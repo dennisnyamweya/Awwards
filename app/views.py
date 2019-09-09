@@ -9,6 +9,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import  ProjectRatingForm
 from django.db.models import Avg
+from django.urls import reverse_lazy
+from django.contrib import messages
 # Create your views here.
 
 # def home(request):
@@ -56,82 +58,96 @@ class ProjectCreateView(LoginRequiredMixin,CreateView):
     fields = ['name','url','info','image']
     success_url = '/'
     
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.user = self.request.user
+        instance.save()
+        messages.success(
+            self.request, 'Your project has been successfully created!')
+        return redirect('home')
+    
 class ProjectUpdateView(LoginRequiredMixin,UpdateView):
     model = Project
     template_name = 'update.html'
     fields = ['name','url','info','image']
     
-    def form_valid(self,form):
+    def form_valid(self, form):
         instance = form.save()
-        return redirect('detail',instance.pk) 
+        messages.success(
+            self.request, 'Your project has been successfully updated!')
+        return redirect('detail', instance.pk)
         
 class ProjectDeleteView(LoginRequiredMixin,DeleteView):
     model = Project
     template_name = 'delete.html'
     success_url = '/'
     
+    def delete(self, request, *args, **kwargs):
+        messages.success(
+            self.request, 'Your project has been successfully deleted!')
+        return super().delete(self, request, *args, **kwargs)
+    
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
-    success_url = '/'
+    success_url = reverse_lazy('home')
     
-# def profile(request):
-#     projects = Project.objects.all().order_by('-date_added')
-#     return render(request, 'profile.html', locals())
 
 class ProfileCreateView(LoginRequiredMixin,CreateView):
     model = Profile
     template_name = 'create_profile.html'
-    fields = ['user','name','email','image','bio']
-    success_url = '/profile'
+    fields = ['name','email','image','bio']
+    success_url = '/'
+    
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.user = self.request.user
+        instance.save()
+        messages.success(
+            self.request, 'Your contact has been successfully created!')
+        return redirect('/')
     
 class ProfileUpdateView(UpdateView):
     model = Profile
     template_name = 'profile_update.html'
-    fields = ['user','name','email','image','bio']
+    fields = ['name','email','image','bio']
+    
+    def form_valid(self, form):
+        instance = form.save()
+        messages.success(
+            self.request, 'Your profile has been successfully updated!')
+        return redirect('profile_detail', instance.pk)
     
 class ProfileDeleteView(DeleteView):
     model = Profile
     template_name = 'profile_delete.html'
     success_url = '/'
 
-# def edit(request):
-#     if request.method == 'POST':
-#         print(request.FILES)
-#         new_profile = ProfileForm(
-#             request.POST,
-#             request.FILES,
-#             instance=request.user.profile
-#         )
-#         if new_profile.is_valid():
-#             new_profile.save()
-#             print(new_profile.fields)
-#             # print(new_profile.fields.profile_picture)
-#             return redirect('profile')
-#     else:
-#         new_profile = ProfileForm(instance=request.user.profile)
-#     return render(request, 'edit.html', locals())
+class ProfileDetailView(DetailView):
+    template_name = 'profile_detail.html'
+    model = Project
+    context_object_name = 'profile'
 
-def user(request, user_id):
-    user_object = get_object_or_404(User, pk=user_id)
-    if request.user == user_object:
-        return redirect('profile')
-    user_projects = user_object.posts.all()
-    return render(request, 'user.html', locals())
+# def user(request, user_id):
+#     user_object = get_object_or_404(User, pk=user_id)
+#     if request.user == user_object:
+#         return redirect('profile')
+#     user_projects = user_object.posts.all()
+#     return render(request, 'user.html', locals())
 
 
-def single_project(request, c_id):
-    current_user = request.user
-    current_project = Post.objects.get(id=c_id)
-    ratings = Rating.objects.filter(post_id=c_id)
-    usability = Rating.objects.filter(post_id=c_id).aggregate(Avg('usability_rating'))
-    content = Rating.objects.filter(post_id=c_id).aggregate(Avg('content_rating'))
-    design = Rating.objects.filter(post_id=c_id).aggregate(Avg('design_rating'))
+# def single_project(request, c_id):
+#     current_user = request.user
+#     current_project = Post.objects.get(id=c_id)
+#     ratings = Rating.objects.filter(post_id=c_id)
+#     usability = Rating.objects.filter(post_id=c_id).aggregate(Avg('usability_rating'))
+#     content = Rating.objects.filter(post_id=c_id).aggregate(Avg('content_rating'))
+#     design = Rating.objects.filter(post_id=c_id).aggregate(Avg('design_rating'))
 
-    return render(request, 'project.html',
-                  {"project": current_project, "user": current_user, 'ratings': ratings, "design": design,
-                   "content": content, "usability": usability})
+#     return render(request, 'project.html',
+#                   {"project": current_project, "user": current_user, 'ratings': ratings, "design": design,
+#                    "content": content, "usability": usability})
 
 
 def review_rating(request, id):

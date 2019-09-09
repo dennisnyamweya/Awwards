@@ -2,12 +2,11 @@ from django.db import models
 from django.utils.timezone import datetime
 from django.contrib.auth.models import User
 from django.dispatch import receiver
-from django.db.models.signals import post_save
 from tinymce.models import HTMLField
 
 # Create your models here.
 class Project(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='projects', default=None)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,default=None)
     name = models.CharField(max_length=20)
     url = models.CharField(max_length=100,blank=True)
     info = models.CharField(max_length=50)
@@ -23,11 +22,11 @@ class Project(models.Model):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True,blank=True)
     name = models.CharField(max_length=20,default='name')
     email = models.EmailField(max_length=100,default='email')
     image = models.ImageField(upload_to='profile_pics/', default='profile_pics/default.jpg')
-    bio = models.TextField(default="Sorry, you have no bio!")
+    bio = models.TextField(max_length=100,blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):

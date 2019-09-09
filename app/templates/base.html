@@ -52,6 +52,9 @@
       <a href="{% url 'create_profile' %}" class="mr-4 text-white">
       <i class="fas fa-user-plus"></i> &nbsp; Create Profile
       </a>
+      <a href="#" class="mr-4 text-white">
+      <i class="fas fa-user-plus"></i> &nbsp;{{profile.name}}
+      </a>
       
       {% else %}
       <a href="{% url 'signup' %}" class="mr-4 text-white">
