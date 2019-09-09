@@ -7,7 +7,7 @@ An application will allow a user to post a project he/she has created and get it
 * git clone https://github.com/dennisnyamweya/Awwards.git
 * cd awwards
 * Install dependencies pip install -r requirements.txt
-* Run the application python manage.py runserverany dependencies? How should I set up my databases? Is there other code this app depends on?}
+* Run the application python manage.py runserverany dependencies? How should I set up my
 ## Known Bugs
 There are no issues that have not yet been resolved and incase of a bug  let users know you know? Outline any issues that would impact use of your application. Share any workarounds that are in place. 
 ## Technologies Used
