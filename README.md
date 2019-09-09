@@ -5,7 +5,7 @@
 An application will allow a user to post a project he/she has created and get it reviewed by his/her peers.
 ## Setup/Installation Requirements
 * git clone https://github.com/dennisnyamweya/Awwards.git
-* cd INSTAGRAM
+* cd awwards
 * Install dependencies pip install -r requirements.txt
 * Run the application python manage.py runserverany dependencies? How should I set up my databases? Is there other code this app depends on?}
 ## Known Bugs
